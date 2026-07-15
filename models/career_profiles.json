@@ -1,0 +1,101 @@
+{
+  "Software Development Engineer": {
+    "vector": [
+      9.0,
+      5.5,
+      7.0,
+      5.0,
+      3.5
+    ],
+    "avg_salary_lpa": 9.5,
+    "description": "Builds and ships production software; strongest fit for high coding + analytical skill."
+  },
+  "Data Scientist / ML Engineer": {
+    "vector": [
+      8.0,
+      5.5,
+      9.0,
+      6.0,
+      3.0
+    ],
+    "avg_salary_lpa": 11.0,
+    "description": "Model building, statistics and experimentation; needs strong analytical + coding skill."
+  },
+  "Product Manager": {
+    "vector": [
+      4.5,
+      9.0,
+      6.5,
+      7.0,
+      6.5
+    ],
+    "avg_salary_lpa": 12.5,
+    "description": "Bridges tech and business; thrives on communication, prioritization and market sense."
+  },
+  "Business / Data Analyst": {
+    "vector": [
+      5.0,
+      7.5,
+      8.0,
+      4.5,
+      4.0
+    ],
+    "avg_salary_lpa": 7.5,
+    "description": "Turns data into decisions for stakeholders; needs analytical rigor + clear communication."
+  },
+  "Core / Systems Engineer": {
+    "vector": [
+      7.0,
+      4.5,
+      8.0,
+      4.0,
+      3.0
+    ],
+    "avg_salary_lpa": 7.0,
+    "description": "Hardware-adjacent or infrastructure-heavy roles; deep technical depth over breadth."
+  },
+  "UI/UX & Product Design": {
+    "vector": [
+      4.0,
+      7.0,
+      5.0,
+      9.0,
+      5.5
+    ],
+    "avg_salary_lpa": 8.0,
+    "description": "Designs usable, delightful interfaces; creativity + communication are the core drivers."
+  },
+  "Higher Studies / Research (MS/PhD)": {
+    "vector": [
+      6.5,
+      6.0,
+      9.5,
+      6.5,
+      3.0
+    ],
+    "avg_salary_lpa": 0.0,
+    "description": "Deep specialization via postgraduate research; analytical curiosity is the dominant trait."
+  },
+  "Government / Public Sector (Competitive Exams)": {
+    "vector": [
+      3.0,
+      7.0,
+      7.5,
+      3.0,
+      6.0
+    ],
+    "avg_salary_lpa": 6.0,
+    "description": "Stable public-sector careers via competitive exams; consistency + discipline matter most."
+  },
+  "Entrepreneurship / Startup Founder": {
+    "vector": [
+      6.5,
+      8.5,
+      6.5,
+      8.0,
+      8.0
+    ],
+    "avg_salary_lpa": 0.0,
+    "description": "Builds something from zero; needs a versatile blend across every axis, especially grit."
+  }
+}

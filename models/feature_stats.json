@@ -1,0 +1,69 @@
+{
+  "dropout_features": [
+    "cgpa",
+    "attendance",
+    "backlogs",
+    "study_hours",
+    "family_income",
+    "extracurricular",
+    "financial_stress",
+    "lms_engagement",
+    "mentor_sessions"
+  ],
+  "placement_features": [
+    "cgpa",
+    "backlogs",
+    "coding_skill",
+    "communication_skill",
+    "internships",
+    "projects",
+    "certifications",
+    "attendance"
+  ],
+  "salary_features": [
+    "cgpa",
+    "coding_skill",
+    "communication_skill",
+    "internships",
+    "projects",
+    "certifications"
+  ],
+  "means": {
+    "cgpa": 6.9709200000000004,
+    "attendance": 77.64442499999998,
+    "backlogs": 0.6285,
+    "study_hours": 3.2956250000000002,
+    "family_income": 2.15175,
+    "extracurricular": 5.563125,
+    "financial_stress": 4.86845,
+    "lms_engagement": 60.10725,
+    "mentor_sessions": 1.226,
+    "certifications": 1.01275,
+    "coding_skill": 5.47155,
+    "communication_skill": 5.725075,
+    "projects": 1.79025,
+    "internships": 0.589
+  },
+  "stds": {
+    "cgpa": 1.284215132182467,
+    "attendance": 13.33880728792275,
+    "backlogs": 0.8989937694163194,
+    "study_hours": 1.5812917125707897,
+    "family_income": 0.9549606928985325,
+    "extracurricular": 2.1580389286060955,
+    "financial_stress": 2.4180707938542705,
+    "lms_engagement": 19.55800312682962,
+    "mentor_sessions": 1.1059972004719827,
+    "certifications": 1.0068966668553587,
+    "coding_skill": 2.2449143653215162,
+    "communication_skill": 1.9887829340490357,
+    "projects": 1.3325535119519794,
+    "internships": 0.7636915648359293
+  },
+  "metrics": {
+    "dropout_auc": 0.749,
+    "placement_auc": 0.743,
+    "salary_mae": 1.03,
+    "trained_on_rows": 4000
+  }
+}

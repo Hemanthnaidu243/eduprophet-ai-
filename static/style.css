@@ -1,0 +1,322 @@
+/* ===================================================================
+   EduProphet AI — design tokens
+   Palette: classic study — parchment/ivory background, deep espresso
+   ink text, antique-gold accent, oxblood (risk) / forest (safe) signals.
+=================================================================== */
+:root {
+  --bg: #f3ecdd;
+  --surface: #fffdf7;
+  --surface-2: #ece0c6;
+  --gold: #a8792f;
+  --gold-soft: #c99a4f;
+  --teal: #2f6d52;
+  --red: #9c3b34;
+  --text: #2b2420;
+  --muted: #766c5c;
+  --line: #ddd0ac;
+
+  --display: "Fraunces", serif;
+  --body: "Inter", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* faint parchment backdrop */
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1.5px 1.5px at 10% 20%, rgba(168,121,47,0.18), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(43,36,32,0.10), transparent),
+    radial-gradient(1.5px 1.5px at 60% 70%, rgba(47,109,82,0.14), transparent),
+    radial-gradient(1px 1px at 30% 85%, rgba(43,36,32,0.08), transparent),
+    radial-gradient(1px 1px at 90% 60%, rgba(168,121,47,0.14), transparent);
+  background-size: 100% 100%;
+}
+
+/* ---------------- header ---------------- */
+.topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 36px clamp(20px, 5vw, 64px) 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand-mark { color: var(--gold); font-size: 1.4rem; }
+.brand-name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+.brand-ai { color: var(--gold); font-style: italic; font-weight: 400; }
+.brand-tagline { color: var(--muted); font-size: 0.92rem; max-width: 60ch; }
+
+/* ---------------- layout ---------------- */
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 5vw, 64px) 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ---------------- ledger (inputs) ---------------- */
+.ledger {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px clamp(18px, 4vw, 36px);
+  box-shadow: 0 1px 3px rgba(43,36,32,0.05);
+}
+.ledger-head h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  color: var(--text);
+}
+.muted { color: var(--muted); }
+.ledger-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px 28px;
+}
+.field label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.field .val {
+  font-family: var(--mono);
+  color: var(--gold);
+  font-weight: 600;
+}
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--gold);
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 4px;
+}
+input[type="range"]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.cast-btn, .report-btn {
+  margin-top: 28px;
+  background: var(--gold);
+  color: #fffdf7;
+  border: none;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 13px 26px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cast-btn:hover, .report-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(168,121,47,0.28);
+}
+.cast-btn:focus-visible, .report-btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+.report-btn {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+}
+.report-btn::before {
+  content: "⬇ ";
+}
+
+/* ---------------- reading / verdict ---------------- */
+.reading { display: flex; flex-direction: column; gap: 28px; }
+
+.verdict-panel {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px clamp(18px, 4vw, 32px);
+  box-shadow: 0 1px 3px rgba(43,36,32,0.05);
+}
+.verdict-score { position: relative; width: 120px; height: 120px; flex-shrink: 0; }
+.score-ring { width: 120px; height: 120px; transform: rotate(-90deg); }
+.ring-bg { fill: none; stroke: var(--surface-2); stroke-width: 8; }
+.ring-fg {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 327;
+  stroke-dashoffset: 327;
+  transition: stroke-dashoffset 0.8s ease, stroke 0.8s ease;
+}
+.score-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-center span {
+  font-family: var(--mono);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.score-center small { color: var(--muted); font-size: 0.65rem; letter-spacing: 0.05em; }
+
+.verdict-text { flex: 1; min-width: 260px; }
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+.verdict-text h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  line-height: 1.35;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+/* signature element: constellation connector between the four cards */
+.constellation { width: 100%; height: 30px; display: block; }
+.const-line {
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  opacity: 0.45;
+  animation: dash 20s linear infinite;
+}
+@keyframes dash { to { stroke-dashoffset: -240; } }
+
+/* ---------------- cards ---------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 22px 24px;
+  min-height: 190px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(43,36,32,0.05);
+}
+.card:hover { border-color: var(--gold); box-shadow: 0 4px 14px rgba(168,121,47,0.12); }
+.card-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+.card h3 {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: var(--text);
+}
+.card-metric {
+  font-family: var(--mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+[data-card="risk"] .card-metric { color: var(--red); }
+[data-card="placement"] .card-metric { color: var(--teal); }
+[data-card="salary"] .card-metric { color: var(--gold); }
+.card-band { font-size: 0.85rem; margin-top: 4px; margin-bottom: 10px; }
+
+.bars { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.bar-row { display: flex; flex-direction: column; gap: 2px; }
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.bar-track {
+  height: 5px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar-fill { height: 100%; border-radius: 4px; }
+
+.career-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.career-item {
+  border-left: 2px solid var(--gold);
+  padding-left: 10px;
+}
+.career-item .name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+.career-item .fit { font-family: var(--mono); color: var(--gold); font-size: 0.8rem; }
+.career-item .desc { color: var(--muted); font-size: 0.75rem; line-height: 1.4; }
+
+/* ---------------- skill gap panel ---------------- */
+.skillgap-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px clamp(18px, 4vw, 32px);
+  box-shadow: 0 1px 3px rgba(43,36,32,0.05);
+}
+.skillgap-panel h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  margin: 0 0 16px;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 24px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+@media (max-width: 640px) {
+  .verdict-panel { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EduProphet AI — The Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="sky"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">◈</span>
+    <span class="brand-name">EduProphet<span class="brand-ai">AI</span></span>
+  </div>
+  <div class="brand-tagline">a reading of trajectory — risk, placement, salary &amp; path, cast from one profile</div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INPUT LEDGER ============ -->
+  <section class="ledger" id="ledger">
+    <div class="ledger-head">
+      <h2>Student Profile</h2>
+      <p class="muted">Move any dial — the reading updates live.</p>
+    </div>
+
+    <div class="ledger-grid">
+      <div class="field">
+        <label>CGPA <span class="val" id="v-cgpa">7.0</span></label>
+        <input type="range" min="3.5" max="10" step="0.1" value="7.0" id="cgpa">
+      </div>
+      <div class="field">
+        <label>Attendance % <span class="val" id="v-attendance">78</span></label>
+        <input type="range" min="30" max="100" step="1" value="78" id="attendance">
+      </div>
+      <div class="field">
+        <label>Backlogs <span class="val" id="v-backlogs">1</span></label>
+        <input type="range" min="0" max="8" step="1" value="1" id="backlogs">
+      </div>
+      <div class="field">
+        <label>Daily study hours <span class="val" id="v-study_hours">3</span></label>
+        <input type="range" min="0" max="10" step="0.5" value="3" id="study_hours">
+      </div>
+      <div class="field">
+        <label>Family income bracket <span class="val" id="v-family_income">2</span></label>
+        <input type="range" min="1" max="4" step="1" value="2" id="family_income">
+      </div>
+      <div class="field">
+        <label>Financial stress <span class="val" id="v-financial_stress">5</span></label>
+        <input type="range" min="0" max="10" step="0.5" value="5" id="financial_stress">
+      </div>
+      <div class="field">
+        <label>LMS / online engagement % <span class="val" id="v-lms_engagement">60</span></label>
+        <input type="range" min="0" max="100" step="1" value="60" id="lms_engagement">
+      </div>
+      <div class="field">
+        <label>Mentor check-ins / month <span class="val" id="v-mentor_sessions">1</span></label>
+        <input type="range" min="0" max="10" step="1" value="1" id="mentor_sessions">
+      </div>
+      <div class="field">
+        <label>Extracurricular score <span class="val" id="v-extracurricular">5</span></label>
+        <input type="range" min="0" max="10" step="0.5" value="5" id="extracurricular">
+      </div>
+      <div class="field">
+        <label>Coding skill <span class="val" id="v-coding_skill">5</span></label>
+        <input type="range" min="0" max="10" step="0.5" value="5" id="coding_skill">
+      </div>
+      <div class="field">
+        <label>Communication skill <span class="val" id="v-communication_skill">5</span></label>
+        <input type="range" min="0" max="10" step="0.5" value="5" id="communication_skill">
+      </div>
+      <div class="field">
+        <label>Creativity skill <span class="val" id="v-creativity_skill">5</span></label>
+        <input type="range" min="0" max="10" step="0.5" value="5" id="creativity_skill">
+      </div>
+      <div class="field">
+        <label>Internships completed <span class="val" id="v-internships">0</span></label>
+        <input type="range" min="0" max="4" step="1" value="0" id="internships">
+      </div>
+      <div class="field">
+        <label>Projects completed <span class="val" id="v-projects">1</span></label>
+        <input type="range" min="0" max="8" step="1" value="1" id="projects">
+      </div>
+      <div class="field">
+        <label>Certifications earned <span class="val" id="v-certifications">0</span></label>
+        <input type="range" min="0" max="6" step="1" value="0" id="certifications">
+      </div>
+    </div>
+
+    <button id="cast-btn" class="cast-btn">Cast the Reading</button>
+  </section>
+
+  <!-- ============ THE READING (results) ============ -->
+  <section class="reading" id="reading">
+
+    <div class="verdict-panel">
+      <div class="verdict-score">
+        <svg viewBox="0 0 120 120" class="score-ring">
+          <circle cx="60" cy="60" r="52" class="ring-bg"/>
+          <circle cx="60" cy="60" r="52" class="ring-fg" id="ring-fg"/>
+        </svg>
+        <div class="score-center">
+          <span id="prophet-score">--</span>
+          <small>Prophet Score</small>
+        </div>
+      </div>
+      <div class="verdict-text">
+        <p class="eyebrow">THE READING</p>
+        <h1 id="narrative">Set your dials and cast the reading to begin.</h1>
+        <p class="muted" id="risk-msg"></p>
+      </div>
+    </div>
+
+    <svg class="constellation" id="constellation" viewBox="0 0 1000 40" preserveAspectRatio="none">
+      <line x1="125" y1="20" x2="375" y2="20" class="const-line" id="line-1"/>
+      <line x1="375" y1="20" x2="625" y2="20" class="const-line" id="line-2"/>
+      <line x1="625" y1="20" x2="875" y2="20" class="const-line" id="line-3"/>
+    </svg>
+
+    <div class="cards">
+
+      <!-- RISK -->
+      <div class="card" data-card="risk">
+        <p class="card-eyebrow">RISK</p>
+        <h3>Dropout Probability</h3>
+        <div class="card-metric" id="dropout-prob">--%</div>
+        <div class="card-band" id="dropout-band">—</div>
+        <div class="bars" id="dropout-bars"></div>
+      </div>
+
+      <!-- PLACEMENT -->
+      <div class="card" data-card="placement">
+        <p class="card-eyebrow">PLACEMENT</p>
+        <h3>Placement Likelihood</h3>
+        <div class="card-metric" id="placement-prob">--%</div>
+        <div class="card-band muted" id="placement-note">—</div>
+        <div class="bars" id="placement-bars"></div>
+      </div>
+
+      <!-- SALARY -->
+      <div class="card" data-card="salary">
+        <p class="card-eyebrow">SALARY</p>
+        <h3>Forecast Package</h3>
+        <div class="card-metric" id="salary-pred">-- LPA</div>
+        <div class="card-band muted" id="salary-range">—</div>
+        <canvas id="salary-chart" height="90"></canvas>
+      </div>
+
+      <!-- PATH -->
+      <div class="card" data-card="path">
+        <p class="card-eyebrow">PATH</p>
+        <h3>Career Fit</h3>
+        <div id="career-list" class="career-list"></div>
+      </div>
+
+    </div>
+
+    <div class="skillgap-panel">
+      <h3>Skill-Gap Radar <span class="muted" id="skillgap-target"></span></h3>
+      <canvas id="radar-chart"></canvas>
+    </div>
+
+    <button id="report-btn" class="report-btn">Download Full Report (PDF)</button>
+  </section>
+
+</main>
+
+
+
+<script src="/static/script.js"></script>
+</body>
+</html>
